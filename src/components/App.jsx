@@ -14,7 +14,7 @@ export default function App() {
             : <Tela2 list={list} qtdFlashcard={qtdFlashcard}/>
     );
 }
-
+//Função para gerar lista com números aleatórios
 function gerarListaAleatorio (qtdFlashcard) {
     let list = [];
     let randomNumber;

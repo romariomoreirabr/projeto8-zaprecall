@@ -42,9 +42,6 @@ export default function Main(props) {
         }
     ];
 
-    //LISTA ALEATÓRIA
-    console.log(list);
-
     for (let i = 0; i < qtdFlashcard; i++) {
         conteudos.push(<Flashcard key={i} contador={i} getInfomacoesFooter={getInfomacoesFooter} quizz={quizzes[list[i]]} />)
     }
