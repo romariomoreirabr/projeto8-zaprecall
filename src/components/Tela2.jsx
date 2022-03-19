@@ -11,9 +11,9 @@ export default function Tela2() {
     let textoFooter = ` ${contadorRespostas}/${qtdFlashcard} CONCLUÍDOS`;
 
     function atualizarContadorResposta (contadorResp){
-        console.log("Passei aqui " + contadorResp);
-        setContadorResposta(contadorRespostas + contadorResp);
-        console.log("ContadorRespostas " + contadorRespostas);
+        // console.log("Passei aqui " + contadorResp);
+        // setContadorResposta(contadorRespostas + contadorResp);
+        // console.log("ContadorRespostas " + contadorRespostas);
     }
 
     return (

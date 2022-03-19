@@ -1,5 +1,5 @@
 import ReactDom from "react-dom"
-import App from "./App";
+import App from "./components/App";
 
 function redenrizarNaTela() {
     return (
