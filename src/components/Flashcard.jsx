@@ -4,7 +4,7 @@ import { useState } from "react";
 export default function Flashcard(props) {
     const [rederenrizado, setRedenrizado] = useState("flashcard");
     const {contador} = props;
-    const {getValorContador} = props;
+    const {getInfomacoesFooter} = props;
 
     const quizzes = [
         {
@@ -64,27 +64,24 @@ export default function Flashcard(props) {
             <div className="perguntaResposta">
                 <span>{resposta}</span>
                 <div className="botoes">
-                    <button className="naoLembrei" onClick={() => { setRedenrizado("naoLembrei"); getValorContador(1); }} >Não lembrei!</button>
-                    <button className="quaseNaoLembrei" onClick={() => { setRedenrizado("quaseNaoLembrei"); getValorContador(1); }}>Quase não lembrei!</button>
-                    <button className="lembrei" onClick={() => { setRedenrizado("lembrei"); getValorContador(1); }}>Zap!</button>
+                    <button className="naoLembrei" onClick={() => { setRedenrizado("naoLembrei"); getInfomacoesFooter(1,"naoLembrei"); }} >Não lembrei!</button>
+                    <button className="quaseNaoLembrei" onClick={() => { setRedenrizado("quaseNaoLembrei"); getInfomacoesFooter(1,"quaseNaoLembrei"); }}>Quase não lembrei!</button>
+                    <button className="lembrei" onClick={() => { setRedenrizado("lembrei"); getInfomacoesFooter(1,"lembrei"); }}>Zap!</button>
                 </div>
             </div>
-    } else if (rederenrizado === "naoLembrei") {
-            
+    } else if (rederenrizado === "naoLembrei") {  
             componenteRedenrizado =
                 <div className="flashcard naoLembrei">
                     <span>Pergunta {contador + 1}</span>
                     <img src="./img/x.svg" alt="errado" />
                 </div>
         } else if (rederenrizado === "quaseNaoLembrei") {
-
             componenteRedenrizado =
                 <div className="flashcard quaseNaoLembrei">
                     <span>Pergunta {contador + 1}</span>
                     <img src="./img/interrogacao.svg" alt="interrogação" />
                 </div>
         } else if (rederenrizado === "lembrei") {
-
             componenteRedenrizado =
                 <div className="flashcard lembrei">
                     <span>Pergunta {contador + 1}</span>

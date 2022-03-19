@@ -5,11 +5,16 @@ import Main from "./Main";
 import { useState } from "react";
 
 export default function Tela2() {
-    const [contadorRespostas, setContadorResposta] = useState(0);
-    function getValorContador(contador) {
+    const [contadorRespostas, setContadorRespostas] = useState(0);
+    const [informacaoResposta, setInformacaoResposta] = useState([]);
+    let arrayInformacoes = informacaoResposta;
+    function getInfomacoesFooter(contador, informacao) {
+        arrayInformacoes.push(informacao);
         console.log("Contador:" + contador);
-        setContadorResposta(contadorRespostas + contador);
-        console.log("Contador Resp:" + contadorRespostas);
+        setContadorRespostas(contadorRespostas + contador);
+        setInformacaoResposta(arrayInformacoes);
+        setTimeout(() => {console.log("Contador Resposta: " + contadorRespostas + "\nInfo Resposta: " + informacaoResposta);}, 3000)
+        
     }
 
     let qtdFlashcard = 8;
@@ -17,8 +22,8 @@ export default function Tela2() {
     return (
         <section className="tela2">
             <Header />
-            <Main qtdFlashcard = {qtdFlashcard} getValorContador = {getValorContador} />
-            <Footer qtdFlashcard = {qtdFlashcard} contadorRespostas = {contadorRespostas} />
+            <Main qtdFlashcard = {qtdFlashcard} getInfomacoesFooter = {getInfomacoesFooter} />
+            <Footer qtdFlashcard = {qtdFlashcard} contadorRespostas = {contadorRespostas} informacaoResposta={informacaoResposta} />
         </section>
     )
 }
