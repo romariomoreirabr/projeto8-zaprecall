@@ -10,11 +10,8 @@ export default function Tela2() {
     let arrayInformacoes = informacaoResposta;
     function getInfomacoesFooter(contador, informacao) {
         arrayInformacoes.push(informacao);
-        console.log("Contador:" + contador);
         setContadorRespostas(contadorRespostas + contador);
         setInformacaoResposta(arrayInformacoes);
-        setTimeout(() => {console.log("Contador Resposta: " + contadorRespostas + "\nInfo Resposta: " + informacaoResposta);}, 3000)
-        
     }
 
     let qtdFlashcard = 8;
