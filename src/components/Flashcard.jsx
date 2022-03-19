@@ -1,9 +1,10 @@
 import { useState } from "react";
+// import { useEffect } from "react";
 
 export default function Flashcard(props) {
     const [rederenrizado, setRedenrizado] = useState("flashcard");
     const {contador} = props;
-    const {atualizarContadorResposta} = props;
+    const {getValorContador} = props;
 
     const quizzes = [
         {
@@ -42,55 +43,56 @@ export default function Flashcard(props) {
     const pergunta = quizzes[contador].pergunta;
     const resposta = quizzes[contador].resposta;
 
+    let componenteRedenrizado = null;
 
     if (rederenrizado === "flashcard") {
-        return (
+        componenteRedenrizado =
             <div className="flashcard">
                 <span>Pergunta {contador + 1}</span>
                 <img src="./img/play.svg" alt="play" onClick={() => { setRedenrizado("pergunta") }} />
             </div>
-        );
+
     } else if (rederenrizado === "pergunta") {
-        return (
+        componenteRedenrizado =
             <div className="perguntaResposta">
                 <span>{pergunta}</span>
                 <img src="./img/setinha.svg" alt="setinha" onClick={() => { setRedenrizado("resposta") }} />
             </div>
-        );
 
     } else if (rederenrizado === "resposta") {
-        return (
+        componenteRedenrizado =
             <div className="perguntaResposta">
                 <span>{resposta}</span>
                 <div className="botoes">
-                    <button className="naoLembrei" onClick={() => { setRedenrizado("naoLembrei") }} >Não lembrei!</button>
-                    <button className="quaseNaoLembrei" onClick={() => { setRedenrizado("quaseNaoLembrei") }}>Quase não lembrei!</button>
-                    <button className="lembrei" onClick={() => { setRedenrizado("lembrei") }}>Zap!</button>
+                    <button className="naoLembrei" onClick={() => { setRedenrizado("naoLembrei"); getValorContador(1); }} >Não lembrei!</button>
+                    <button className="quaseNaoLembrei" onClick={() => { setRedenrizado("quaseNaoLembrei"); getValorContador(1); }}>Quase não lembrei!</button>
+                    <button className="lembrei" onClick={() => { setRedenrizado("lembrei"); getValorContador(1); }}>Zap!</button>
                 </div>
             </div>
-        );
     } else if (rederenrizado === "naoLembrei") {
-        atualizarContadorResposta(1);
-        return (
-            <div className="flashcard naoLembrei">
-                <span>Pergunta {contador + 1}</span>
-                <img src="./img/x.svg" alt="errado" />
-            </div>
-        );
-    } else if (rederenrizado === "quaseNaoLembrei") {
-        return (
-            <div className="flashcard quaseNaoLembrei">
-                <span>Pergunta {contador + 1}</span>
-                <img src="./img/interrogacao.svg" alt="interrogação" />
-            </div>
-        );
-    } else if (rederenrizado === "lembrei") {
-        return (
-            <div className="flashcard lembrei">
-                <span>Pergunta {contador + 1}</span>
-                <img src="./img/v.svg" alt="acertou" />
-            </div>
-        );
-    }
+            
+            componenteRedenrizado =
+                <div className="flashcard naoLembrei">
+                    <span>Pergunta {contador + 1}</span>
+                    <img src="./img/x.svg" alt="errado" />
+                </div>
+        } else if (rederenrizado === "quaseNaoLembrei") {
+
+            componenteRedenrizado =
+                <div className="flashcard quaseNaoLembrei">
+                    <span>Pergunta {contador + 1}</span>
+                    <img src="./img/interrogacao.svg" alt="interrogação" />
+                </div>
+        } else if (rederenrizado === "lembrei") {
+
+            componenteRedenrizado =
+                <div className="flashcard lembrei">
+                    <span>Pergunta {contador + 1}</span>
+                    <img src="./img/v.svg" alt="acertou" />
+                </div>
+        }
+    return (
+        componenteRedenrizado
+    );
 
 }
