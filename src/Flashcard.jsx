@@ -2,7 +2,8 @@ import { useState } from "react";
 
 export default function Flashcard(props) {
     const [rederenrizado, setRedenrizado] = useState("flashcard");
-    const { contador } = props;
+    const {contador} = props;
+    const {atualizarContadorResposta} = props;
 
     const quizzes = [
         {
@@ -41,6 +42,7 @@ export default function Flashcard(props) {
     const pergunta = quizzes[contador].pergunta;
     const resposta = quizzes[contador].resposta;
 
+
     if (rederenrizado === "flashcard") {
         return (
             <div className="flashcard">
@@ -61,10 +63,32 @@ export default function Flashcard(props) {
             <div className="perguntaResposta">
                 <span>{resposta}</span>
                 <div className="botoes">
-                    <button className="naoLembrei">Não lembrei!</button>
-                    <button className="quaseNaoLembrei">Quase não lembrei!</button>
-                    <button className="lembrei">Zap!</button>
+                    <button className="naoLembrei" onClick={() => { setRedenrizado("naoLembrei") }} >Não lembrei!</button>
+                    <button className="quaseNaoLembrei" onClick={() => { setRedenrizado("quaseNaoLembrei") }}>Quase não lembrei!</button>
+                    <button className="lembrei" onClick={() => { setRedenrizado("lembrei") }}>Zap!</button>
                 </div>
+            </div>
+        );
+    } else if (rederenrizado === "naoLembrei") {
+        atualizarContadorResposta(1);
+        return (
+            <div className="flashcard naoLembrei">
+                <span>Pergunta {contador + 1}</span>
+                <img src="./img/x.svg" alt="errado" />
+            </div>
+        );
+    } else if (rederenrizado === "quaseNaoLembrei") {
+        return (
+            <div className="flashcard quaseNaoLembrei">
+                <span>Pergunta {contador + 1}</span>
+                <img src="./img/interrogacao.svg" alt="interrogação" />
+            </div>
+        );
+    } else if (rederenrizado === "lembrei") {
+        return (
+            <div className="flashcard lembrei">
+                <span>Pergunta {contador + 1}</span>
+                <img src="./img/v.svg" alt="acertou" />
             </div>
         );
     }
